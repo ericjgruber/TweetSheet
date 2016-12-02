@@ -34,14 +34,32 @@
     if($string["errors"][0]["message"] != "") {echo "<h3>Sorry, there was a problem.</h3><p>Twitter returned the following error message:</p><p><em>".$string[errors][0]["message"]."</em></p>";exit();}
 
     /**
-     * Uncomment the following line to see all the information available from 
+     * Uncomment the following line to see all the information available from
      * Twitter.
     **/
     // echo "<pre>" . print_r($string) . "</pre>";
 
+    echo '<table class="table table-bordered table-condensed table-striped">';
+
+    // Create the "spreadsheet"
+    echo '<thead><tr><th>Date Created</th><th>Tweet</th><th>Username</th><th>Screenname</th></tr></thead>';
+
+    echo '<tbody>';
+
+    foreach($string as $items) {
+      $created_at = $items['created_at'] = date("n/j/Y, g:i a");
+
+      echo '<tr>';
+      echo '<td>' . $created_at . '</td>';
+      echo '<td>' . $items['text'] . '<br><a href="https://www.twitter.com/' . $items['user']['screen_name'] . '/status/' . $items['id'] . '" target="_blank">permalink</a></td>';
+      echo '<td>' . $items['user']['name'] . '</td>';
+      echo '<td><a href="https://www.twitter.com/' . $items['user']['screen_name'] . '" target="_blank">@' . $items['user']['screen_name'] . '</a></td>';
+      echo '</tr>';
+    }
+
+    echo '</tbody>';
+    echo '</table>';
     ?>
-
-
   </div>
 
   </body>
