@@ -32,9 +32,12 @@
     ->buildOauth($url, $requestMethod)
     ->performRequest(),$assoc = TRUE);
     if($string["errors"][0]["message"] != "") {echo "<h3>Sorry, there was a problem.</h3><p>Twitter returned the following error message:</p><p><em>".$string[errors][0]["message"]."</em></p>";exit();}
-    // echo "<pre>";
-    // print_r($string);
-    // echo "</pre>";
+
+    /**
+     * Uncomment the following line to see all the information available from 
+     * Twitter.
+    **/
+    // echo "<pre>" . print_r($string) . "</pre>";
 
     ?>
 
